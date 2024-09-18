@@ -140,9 +140,9 @@ switch (PLATFORM_NAME) {
     }
     if (PLATFORM_NAME === 'darwin') {
       if (!TARGET_TRIPLE || TARGET_TRIPLE.startsWith('x86_64')) {
-        ExtraCflagsCC += ',-mmacosx-version-min=10.13'
+        ExtraCflagsCC += ',"-mmacosx-version-min=10.13"'
       } else {
-        ExtraCflagsCC += ',-mmacosx-version-min=11.0'
+        ExtraCflagsCC += ',"-mmacosx-version-min=11.0"'
       }
     }
     break
