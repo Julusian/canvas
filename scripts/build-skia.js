@@ -138,6 +138,13 @@ switch (PLATFORM_NAME) {
     if (PLATFORM_NAME === 'linux' && (!TARGET_TRIPLE || TARGET_TRIPLE.startsWith('x86_64'))) {
       ExtraCflagsCC += ',"-Wno-psabi"'
     }
+    if (PLATFORM_NAME === 'darwin') {
+      if (!TARGET_TRIPLE || TARGET_TRIPLE.startsWith('x86_64')) {
+        ExtraCflagsCC += ',-mmacosx-version-min=10.13'
+      } else {
+        ExtraCflagsCC += ',-mmacosx-version-min=11.0'
+      }
+    }
     break
   default:
     throw new TypeError(`Don't support ${PLATFORM_NAME} for now`)
