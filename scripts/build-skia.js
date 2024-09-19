@@ -138,13 +138,6 @@ switch (PLATFORM_NAME) {
     if (PLATFORM_NAME === 'linux' && (!TARGET_TRIPLE || TARGET_TRIPLE.startsWith('x86_64'))) {
       ExtraCflagsCC += ',"-Wno-psabi"'
     }
-    if (PLATFORM_NAME === 'darwin') {
-      if (!TARGET_TRIPLE || TARGET_TRIPLE.startsWith('x86_64')) {
-        ExtraCflagsCC += ',"-mmacosx-version-min=10.13"'
-      } else {
-        ExtraCflagsCC += ',"-mmacosx-version-min=11.0"'
-      }
-    }
     break
   default:
     throw new TypeError(`Don't support ${PLATFORM_NAME} for now`)
@@ -227,6 +220,10 @@ switch (TARGET_TRIPLE) {
       ExtraSkiaBuildFlag += ' target_cpu="x64" target_os="mac"'
       ExtraCflagsCC += ',"-Wno-psabi"'
     }
+    ExtraCflagsCC += ', "-mmacosx-version-min=10.13"'
+    ExtraLdFlags = ' "-mmacosx-version-min=10.13"'
+    ExtraAsmFlags = '"-mmacosx-version-min=10.13"'
+    ExtraCflags = '"-mmacosx-version-min=10.13"'
     break
   case '':
     break
