@@ -203,11 +203,7 @@ jobs:
         if: ${{ matrix.settings.setup }}
 
       - name: Download skia binary
-        run: |
-          wget https://builds.julusian.dev/companion-builds/macos-skia-test.zip
-          unzip macos-skia-test.zip
-          mkdir -p skia/out/Static
-          mv lib*.a skia/out/Static/
+        run: node ./scripts/release-skia-binary.mjs --download --target=${{ matrix.settings.downloadTarget }}
 
       - name: 'Build'
         if: ${{ !matrix.settings.docker }}
