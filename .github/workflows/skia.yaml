@@ -6,7 +6,6 @@ on:
       - release
     tags-ignore:
       - '**'
-  workflow_dispatch:
 
 env:
   MACOSX_DEPLOYMENT_TARGET: '10.13'
@@ -96,12 +95,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable --mode=skip-build
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: bindings-${{ matrix.os }}
-          path: skia/out/Static
 
       - name: Upload release
         run: node ./scripts/release-skia-binary.mjs --upload
