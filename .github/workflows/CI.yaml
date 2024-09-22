@@ -75,7 +75,7 @@ jobs:
               clang --version
               yarn build --target x86_64-apple-darwin
             downloadTarget: ''
-            test-url: https://builds.julusian.dev/companion-builds/macos-skia-test.zip
+            testUrl: https://builds.julusian.dev/companion-builds/macos-skia-test.zip
           # - host: windows-latest
           #   setup: |
           #     choco upgrade llvm
@@ -104,7 +104,7 @@ jobs:
               export MACOSX_DEPLOYMENT_TARGET='11.0'
               clang --version
               yarn build --target aarch64-apple-darwin
-            test-url: https://builds.julusian.dev/companion-builds/macos-skia-test-arm.zip
+            testUrl: https://builds.julusian.dev/companion-builds/macos-skia-test-arm.zip
           # - host: ubuntu-latest
           #   downloadTarget: 'aarch64-unknown-linux-gnu'
           #   target: 'aarch64-unknown-linux-gnu'
@@ -206,7 +206,7 @@ jobs:
 
       - name: Download skia binary
         run: |
-          wget ${{ matrix.test-url }} -O download.zip
+          wget ${{ matrix.settings.testUrl }} -O download.zip
           unzip download.zip
           mkdir -p skia/out/Static
           mv lib*.a skia/out/Static/
